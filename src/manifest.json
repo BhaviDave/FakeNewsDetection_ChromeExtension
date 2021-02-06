@@ -23,6 +23,7 @@
       "<all_urls>",
       "storage",
       "contextMenus",
-      "activeTab"
+      "activeTab",
+      "notifications"
     ]
   }
