@@ -1,0 +1,27 @@
+{
+    "name": "My Extension",
+    "description": "Copies text",
+    "version": "0.1",
+    "manifest_version": 2,
+    "icons": {
+      "16": "/fake_news_colour_192.png"
+    },
+    "background": {
+      "scripts": [
+        "./background.js"
+      ]
+    },
+    "options_page": "./options.html",
+    "browser_action": {
+      "default_title": "My Extension",
+      "default_popup": "./popup.html",
+      "default_icon": "./fake_news_colour_192.png"
+    },
+    "permissions": [
+      "tabs",
+      "<all_urls>",
+      "storage",
+      "contextMenus",
+      "activeTab"
+    ]
+  }
