@@ -17,6 +17,7 @@
       "default_popup": "./popup.html",
       "default_icon": "./fake_news_colour_192.png"
     },
+    "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js; object-src 'self'",
     "permissions": [
       "tabs",
       "<all_urls>",
