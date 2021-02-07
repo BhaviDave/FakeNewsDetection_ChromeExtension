@@ -25,21 +25,28 @@ document.getElementById("check").onclick = function() {make_api_call()};
     };
 
     fetch('http://127.0.0.1:8080/predict', requestOptions)
+    //'https://fakeapp-service-m6opf6hawa-uc.a.run.app/predict', requestOptions)
     .then((response) => {
         return response.json();
     })
     .then((results) => {
         var  prob = results.prob;
-        var output = (parseFloat(prob) * 100).toString();
+        //a.toFixed(2);
+        var output = (parseFloat(prob).toFixed(2) * 100).toString();
         document.getElementById("res").innerText = "Chances of this news article being fake is: " + output + "%";
 
 
         console.log(results.prob);
-        if(results.prob < 100) //todo change this to threshold
+        if(results.prob >= 100) //todo change this to threshold
         {
+              document.getElementById("res").style.color = 'green';
+        }
+        else
+        {
+            document.getElementById("res").style.color = 'red';
             var notifOptions={
             type : 'basic',
-            iconUrl : 'fake_news_colour_192.png',
+            iconUrl : 'RealityCheck_200.png',
             title : 'Fake News!',
             message : 'Uh Oh! Looks like that claim is disputed. Check our sources'
             };
@@ -49,14 +56,12 @@ document.getElementById("check").onclick = function() {make_api_call()};
             chrome.notifications.create(notifOptions, callback);
 
                 function callback(){
-                    console.log('Popup done!')
+                    console.log('Popup done!');
                 }
 
-            document.getElementById("textarea").style.display='none';
-            document.getElementById("res").style.display='none';
-            document.getElementById("check").style.display='none';
 
             var q= document.getElementById("textarea").value;
+            console.log(q);
             fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?q="+q+"&pageNumber=1&pageSize=10&autoCorrect=true&fromPublishedDate=null&toPublishedDate=null", {
                 "method": "GET",
                 "headers": {
@@ -68,23 +73,43 @@ document.getElementById("check").onclick = function() {make_api_call()};
                 return response.json();
             })
             .then(response => {
+
                 console.log(response);
+                document.getElementById("textarea").style.display='none';
+            //document.getElementById("res").style.display='none';
+            document.getElementById("check").style.display='none';
+
                 function createElement(text,tag)
                     {
                         var h = document.createElement(tag);
+
                         var t = document.createTextNode(text);
                         h.appendChild(t);
                         document.body.appendChild(h);
+
                     }
 
                 for (var val of response.value)
                 {
-                   // var h1 = document.createElement('h1');
-                    //h1.appendChild(document.createTextNode(text));
-                    //document.body.appendChild(h1);
-                    createElement(val.title,'h1');
-                    createElement(val.url,'p');
-                    createElement(val.description,'p');
+                   //title
+                   var h1 = document.createElement('h1');
+                   h1.appendChild(document.createTextNode(val.title));
+                   document.body.appendChild(h1);
+
+                   //link
+                   newlink = document.createElement('a');
+                 newlink.innerHTML = val.url;
+                   newlink.setAttribute('title', val.url);
+                   newlink.setAttribute('href', val.url);
+                   document.body.appendChild(newlink);
+
+                    //para
+                    var para = document.createElement("P");
+                    para.innerText = val.description;
+                    document.body.appendChild(para);
+
+                    //createElement(val.url,'p');
+                    //createElement(val.description,'p');
                     //document.write(val.title + "<br />");
                     //document.write(val.url + "<br />");
                    // document.write(val.description + "<br />");

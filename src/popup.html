@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
 	<title>My Extension</title>
-
 	<style>
 		textarea {
 			border: none;
@@ -19,55 +17,55 @@
 			-moz-box-shadow: none;
 			box-shadow: none;
 		}
-		button{
-
-		}
 		.main {
 			 padding: 10px;
 			 width: 35%;
 			box-shadow: 0 0 0 rgba(0,0,0,0);
 		}
-
 		.main-input-text { margin-bottom: 20px; }
+		.srcLink {
+	text-decoration: none;
+	color: #333333;
+}
 
-		.main-result-block { text-align: center; }
-		.pos { color: green; }
-		.neg { color: darkred; }
-		.neutral { color: gray }
-		.invisible { display: none; }
+
+
 
 
 	</style>
 
-
 </head>
 
 
-<body class="container">
+<body class="container " style="background:#E6F7FF">
 
-	<div class="main">
-		<h1>Project Name</h1>
-		 <!--<h1>Project Name</h1> todo come up with a name -->
+	<div class="main" >
+
+
+		<div><img src="./RealityCheck_custom_rect.png"/></div>
+
+		 <!--<h1><a class="srcLink" href="https://github.com/BhaviDave/FakeNewsDetection_ChromeExtension">Fake News</a></h1>-->
 		 <!-- background: url(images/benice.png) center center no-repeat; /* This ruins default border */-->
 
 		<section class="main-input-text">
-			<textarea readonly rows="9" cols="60" id="textarea"></textarea> <!-- todo dynamically resize -->
-			<button type="button" id="check" class="btn btn-info btn-rounded ">Check the Story!</button>
+			<center><textarea readonly rows="9" cols="60" id="textarea"></textarea></center> <!-- todo dynamically resize -->
+			<center><button type="button" id="check" class="btn btn-info btn-rounded ">Check the Story!</button></center>
 		</section>
+	</div>
 
-		<section class="main-result">
-          <p id="res" class="main-result-block invisible">
-              <span>Result:</span>
+          <p class="text-justify" id="res" >
           </p>
-      </section>
 
+		  <div id="news">
+
+		  </div>
 
 		 <!-- <p id = 'res'></p>
 		<div class="d-grid gap-2">
 
 		</div> -->
 
-	</div>
+
 
 
 	<script src="./popup.js"></script>
