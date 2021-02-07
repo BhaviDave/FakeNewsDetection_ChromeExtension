@@ -23,7 +23,7 @@ document.getElementById("check").onclick = function() {make_api_call()};
         body: JSON.stringify(post_data)
     };
 
-    fetch('http://127.0.0.1:8080/predict', requestOptions)
+    fetch('https://fakeapp-service-m6opf6hawa-uc.a.run.app/predict', requestOptions)
     //'https://fakeapp-service-m6opf6hawa-uc.a.run.app/predict', requestOptions)
     .then((response) => {
         return response.json();
@@ -34,14 +34,17 @@ document.getElementById("check").onclick = function() {make_api_call()};
         var output = (parseFloat(prob).toFixed(2) * 100).toString();
         document.getElementById("res").innerText = "Chances of this news article being fake is: " + output + "%";
 
+        var temp = parseFloat(prob).toFixed(2) * 100;
 
         console.log(results.prob);
-        if(results.prob >= 100) //todo change this to threshold
+        if(temp <= 5) //todo change this to threshold
         {
+            console.log(results.prob);
               document.getElementById("res").style.color = 'green';
         }
         else
         {
+            console.log("Here");
             document.getElementById("res").style.color = 'red';
             var notifOptions={
             type : 'basic',

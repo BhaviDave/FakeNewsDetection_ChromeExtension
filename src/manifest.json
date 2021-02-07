@@ -1,5 +1,5 @@
 {
-    "name": "My Extension",
+    "name": "Reality Check",
     "description": "Copies text",
     "version": "0.1",
     "manifest_version": 2,
@@ -14,7 +14,7 @@
     },
     "options_page": "./options.html",
     "browser_action": {
-      "default_title": "My Extension",
+      "default_title": "Reality Check",
       "default_popup": "./popup.html",
       "default_icon": "./RealityLogo_56.png"
     },
