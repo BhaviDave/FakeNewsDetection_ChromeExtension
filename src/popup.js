@@ -12,8 +12,7 @@ chrome.tabs.executeScript({
 document.getElementById("check").onclick = function() {make_api_call()};
 
   function make_api_call() {
-  //todo make api call
-  //alert("Real or Fake");
+
     const post_data = {
         article: document.getElementById("textarea").value
         };
@@ -89,11 +88,10 @@ document.getElementById("check").onclick = function() {make_api_call()};
 
                     }
 
+
+
                 for (var val of response.value)
                 {
-
-
-
                     var newdivElement = document.createElement('div');
                     newdivElement.className = "story";
                     var h1 = document.createElement('h1');
@@ -107,13 +105,16 @@ document.getElementById("check").onclick = function() {make_api_call()};
                     var para = document.createElement("P");
                     para.innerText = val.description;
                     newdivElement.appendChild(para);
-                    newdivElement.style.margin = "5px 5px 10px 5px";
-                    newdivElement.style["boxShadow"] = "1px 1px 5px -1px #000;";
+                    //newdivElement.style.margin = "5px 5px 10px 5px";
+                    //newdivElement.style["boxShadow"] = "1px 1px 5px -1px #000;";
 
 
                     document.body.appendChild(newdivElement);
 
                 }
+                 document.getElementById("res").style.display='none';
+                 //document.getElementById("res").style.color = 'black';
+                 document.getElementById("top").innerText = "Alternate Sources-";
             })
             .catch(err => {
                 console.error(err);
