@@ -91,28 +91,28 @@ document.getElementById("check").onclick = function() {make_api_call()};
 
                 for (var val of response.value)
                 {
-                   //title
-                   var h1 = document.createElement('h1');
-                   h1.appendChild(document.createTextNode(val.title));
-                   document.body.appendChild(h1);
 
-                   //link
-                   newlink = document.createElement('a');
-                 newlink.innerHTML = val.url;
-                   newlink.setAttribute('title', val.url);
-                   newlink.setAttribute('href', val.url);
-                   document.body.appendChild(newlink);
 
-                    //para
+
+                    var newdivElement = document.createElement('div');
+                    newdivElement.className = "story";
+                    var h1 = document.createElement('h1');
+                    h1.appendChild(document.createTextNode(val.title));
+                    newdivElement.appendChild(h1);
+                    newlink = document.createElement('a');
+                    newlink.innerHTML = val.url;
+                    newlink.setAttribute('title', val.url);
+                    newlink.setAttribute('href',val.url);
+                    newdivElement.appendChild(newlink);
                     var para = document.createElement("P");
                     para.innerText = val.description;
-                    document.body.appendChild(para);
+                    newdivElement.appendChild(para);
+                    newdivElement.style.margin = "5px 5px 10px 5px";
+                    newdivElement.style["boxShadow"] = "1px 1px 5px -1px #000;";
 
-                    //createElement(val.url,'p');
-                    //createElement(val.description,'p');
-                    //document.write(val.title + "<br />");
-                    //document.write(val.url + "<br />");
-                   // document.write(val.description + "<br />");
+
+                    document.body.appendChild(newdivElement);
+
                 }
             })
             .catch(err => {
